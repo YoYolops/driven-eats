@@ -1,7 +1,6 @@
-let num = 0;
+let nome = "12,30"
+let arrayNome = nome.split(",");
 
 function addNum() {
-    console.log("oi")
-    let tag = document.getElementById("blablabla");
-    console.log(tag);
+    console.log(Number(arrayNome[0]));
 }

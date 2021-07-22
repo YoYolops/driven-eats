@@ -174,3 +174,8 @@ footer button {
     border: none;
     outline: none;
 }
+
+#enabled {
+    background-color: var(--stGreen);
+    font-weight: bolder;
+}
