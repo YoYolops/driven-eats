@@ -5,6 +5,8 @@
         <meta charset="utf-8">
         <link href="./styles/reset.css" rel="stylesheet">
         <link href="./styles/styles.css" rel="stylesheet">
+        <script type="text/javascript" src="../src/joaninha.js"></script>
+        <script type="text/javascript" src="../src/ItemsSelector.js"></script>
     </head>
 
     <body>
@@ -16,8 +18,8 @@
         <div class="app-content-container">
             <section>
                 <h2>Primeiro, seu prato</h2>
-                <div class="scroller">
-                    <div class="card">
+                <div id="dish-scroller" class="scroller">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg1.jpg" alt="Prato principal">
                         </div>
@@ -28,7 +30,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg2.jpg" alt="Prato principal">
                         </div>
@@ -39,7 +41,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg3.jpg" alt="Prato principal">
                         </div>
@@ -50,7 +52,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg4.jpg" alt="Prato principal">
                         </div>
@@ -61,7 +63,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg5.jpeg" alt="Prato principal">
                         </div>
@@ -72,7 +74,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg6.jpg" alt="Prato principal">
                         </div>
@@ -83,7 +85,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg7.jpg" alt="Prato principal">
                         </div>
@@ -94,7 +96,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dish-scroller')" >
                         <div class="img-container">
                             <img src="./img/dishes/bg8.jpg" alt="Prato principal">
                         </div>
@@ -109,8 +111,8 @@
 
             <section>
                 <h2>Agora, sua bebida</h2>
-                <div class="scroller">
-                    <div class="card">
+                <div id="beverage-scroller"  class="scroller">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv1.jpeg" alt="bebida">
                         </div>
@@ -121,7 +123,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv2.jpg" alt="bebida">
                         </div>
@@ -132,7 +134,7 @@
                         </div>
                     </div>
     
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv3.jpg" alt="bebida">
                         </div>
@@ -143,7 +145,7 @@
                         </div>
                     </div>
     
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv4.jpg" alt="bebida">
                         </div>
@@ -154,7 +156,7 @@
                         </div>
                     </div>
     
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv5.jpg" alt="bebida">
                         </div>
@@ -165,7 +167,7 @@
                         </div>
                     </div>
     
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'beverage-scroller')" >
                         <div class="img-container">
                             <img src="./img/beverage/bv6.jpg" alt="bebida">
                         </div>
@@ -180,8 +182,8 @@
 
             <section>
                 <h2>Por fim, sua sobremesa</h2>
-                <div class="scroller">
-                    <div class="card">
+                <div id="dessert-scroller" class="scroller">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds1.jpg" alt="bebida">
                         </div>
@@ -192,7 +194,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds2.jpeg" alt="bebida">
                         </div>
@@ -203,7 +205,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds3.jpg" alt="bebida">
                         </div>
@@ -214,7 +216,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds4.jpg" alt="bebida">
                         </div>
@@ -225,7 +227,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds5.jpg" alt="bebida">
                         </div>
@@ -236,7 +238,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds6.jpeg" alt="bebida">
                         </div>
@@ -247,7 +249,7 @@
                         </div>
                     </div>
 
-                    <div class="card">
+                    <div class="card" onclick="toggleSelectedMode(this, 'dessert-scroller')" >
                         <div class="img-container">
                             <img src="./img/dessert/ds7.jpg" alt="bebida">
                         </div>
@@ -262,7 +264,7 @@
         </div>
 
         <footer>
-            <button>
+            <button onclick="addNum()">
                 Selecione os 3 itens para fechar o pedido
             </button>
         </footer>
