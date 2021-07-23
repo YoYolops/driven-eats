@@ -194,3 +194,10 @@ function confirmationPopUpActivator() {
 
     popupContainer.id = null;
 }
+
+
+//Nem precisa documentar, mais auto explicativo que isso é impossível kkkkkkk
+function hidePopUp() {
+    const popupContainer = document.querySelector(".popup-container");
+    popupContainer.id = "hidden";
+}
