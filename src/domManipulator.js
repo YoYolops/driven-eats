@@ -3,11 +3,15 @@
 //#################################################################################################
 
 
-
 const order = {
     dish: {},
     beverage: {},
     dessert: {}
+}
+
+const customer = {
+    name: null,
+    address: null
 }
 
 /** 
@@ -181,7 +185,7 @@ function confirmationPopUpActivator() {
         "TOTAL", "R$ " + totalOrderPrice,
     ];
 
-    const popupContainer = document.querySelector(".popup-container");
+    const popupContainer = document.querySelector("#popup-container");
     const spans = document.querySelectorAll(".span");
 
     for(let i = 0; i < spans.length; i++) {
@@ -192,12 +196,54 @@ function confirmationPopUpActivator() {
         }
     }
 
-    popupContainer.id = null;
+    resetPopUpState();
+    popupContainer.className = null;
 }
 
 
-//Nem precisa documentar, mais auto explicativo que isso é impossível kkkkkkk
+/** 
+ * Simply reset the state of popup, otherwise, when the client cancel the order to choose
+ * something else, the popup wouldn't show the chosen items again for confirmation
+ * @return {void} void
+ */ 
+function resetPopUpState() {
+    const orderedItems = document.querySelector("#ordered-items");
+    orderedItems.className = null;
+
+    const addressInput = document.querySelector("#address-input-container");
+    addressInput.className = "hidden";
+}
+
+
+// Nem precisa documentar, mais auto explicativo que isso é impossível kkkkkkk
 function hidePopUp() {
-    const popupContainer = document.querySelector(".popup-container");
-    popupContainer.id = "hidden";
+    const popupContainer = document.querySelector("#popup-container");
+    popupContainer.className = "hidden";
 }
+
+
+/** 
+ * Activate the customer data colector in the popup
+ * @return {void} void
+ */
+function askForAddress() {
+    const orderedItems = document.querySelector("#ordered-items");
+    const addressInput =document.querySelector("#address-input-container");
+
+    orderedItems.className = "hidden";
+    addressInput.className = null;
+}
+
+
+/**
+ * Just verify if the data is null or an empty string 
+ * @param {Object} dataJson the info provided in the format {name: "something", address: "something"}
+ * @return {boolean} true if the provided data is valid, false otherwise
+ */
+function customerProvidedDataValidator(dataJson) {
+    const { name, address } = dataJson;
+
+    if(!name || !address || name === "" || address === "") return false;
+    return true;
+}
+

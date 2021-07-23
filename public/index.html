@@ -264,22 +264,32 @@
         </div>
 
         <footer>
-            <button id="disabled"  onclick="confirmationPopUpActivator()" disabled >
+            <button id="disabled" onclick="confirmationPopUpActivator()" disabled >
                 Selecione os 3 itens para fechar o pedido
             </button>
         </footer>
 
-        <div id="hidden" class="popup-container">
+        <div id="popup-container" class="hidden">
             <div class="popup">
                 <h3>Confirme seu pedido</h3>
-                <div class="ordered-items">
+                <div id="ordered-items">
                     <p><span class="span" id="dish-name"></span><span class="span" id="dish-price"></span></p>
                     <p><span class="span" id="beverage-name"></span><span class="span" id="beverage-price"></span></p>
                     <p><span class="span" id="dessert-name"></span><span class="span" id="dessert-price"></span></p>
                     <p><span class="span" id="total-price">TOTAL</span> <span class="span" id="total-price"></span></p>
                 </div>
+
+                <div class="hidden" id="address-input-container">
+                    <div>
+                        <label>Nome: </label> <input required  id="customer-name-input" class="input-box" type="text">
+                    </div>
+                    <div>
+                        <label>Endereço: </label> <input required  id="customer-address-input" class="input-box" type="text">
+                    </div>
+                </div>
+
                 <div class="popup-button-container">
-                    <div class="wpp-link-container">
+                    <div onclick="askForAddress()" class="wpp-link-container">
                         <a>Tudo certo, pode pedir!</a>
                     </div>
                     <button onclick="hidePopUp()">Cancelar</button>

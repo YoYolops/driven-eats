@@ -11,6 +11,10 @@
     --lightGreen: #50D074;
 }
 
+.hidden {
+    display: none !important;
+}
+
 h1, h2 {
     font-family: 'Righteous', cursive;
 }
@@ -34,10 +38,6 @@ body::-webkit-scrollbar {
 
 body::-webkit-scrollbar-track {
     width: 0px;
-}
-
-#hidden {
-    display: none !important;
 }
 
 header {
@@ -192,7 +192,7 @@ footer button {
 
 
 /* POPUP STYLES */
-.popup-container {
+#popup-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -225,12 +225,12 @@ footer button {
     font-size: 20px;
 }
 
-.ordered-items {
+#ordered-items {
     padding-top: 30px;
     font-size: 18px;
 }
 
-.ordered-items p {
+#ordered-items p {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -247,6 +247,34 @@ footer button {
     font-size: 19px;
     font-weight: bold;
     color: #fff;
+}
+
+#address-input-container {
+    padding-top: 30px;
+    font-size: 18px;
+    padding-top: 40px;
+}
+
+#address-input-container > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.input-box {
+    border: none;
+    border-bottom: 2px solid #fff;
+    background-color: inherit;
+    padding: 3px;
+    color: #fff;
+    outline: none;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.input-box:focus {
+    outline: none;
 }
 
 .popup-button-container {
