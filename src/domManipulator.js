@@ -210,10 +210,12 @@ function resetPopUpState() {
     const orderedItems = document.querySelector("#ordered-items");
     orderedItems.className = null;
 
-    document.querySelector("#address-input-container").className = "hidden"; // hides address inputs
-    document.querySelector("#address-confirmation-button").className = "hidden"; // hides address confirmation button
+    document.querySelector("#popup-title").textContent = "Confirme seu pedido";
+    document.querySelector("#address-confirmation-button").style.color = "#50D074"; 
+    document.querySelector("#address-input-container").className = "hidden";
+    document.querySelector("#address-confirmation-button").className = "hidden";
     document.querySelector("#order-confirmation-button").className = "confirmation-button"; // enable confirmation button
-    document.querySelector(".popup").style.backgroundColor = "#32b72f"; // var(--stGreen) reset popup color
+    document.querySelector(".popup").style.backgroundColor = "#32b72f"; // var(--stGreen) 
 }
 
 
@@ -280,6 +282,7 @@ function purchaseFinisher() {
     } else {
         document.querySelector("#popup-title").textContent = "Insira dados válidos";
         document.querySelector(".popup").style.backgroundColor = "#ad001d";
+        document.querySelector("#address-confirmation-button").style.color = "#ad001d";
         return; // para a função
     }
 
