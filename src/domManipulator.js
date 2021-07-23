@@ -238,13 +238,14 @@ function askForAddress() {
 
     // hides the first button and shows the one that will handle the address data
     document.querySelector("#order-confirmation-button").className = "hidden";
-    document.querySelector("#address-confirmation-button").className = ".confirmation-button";
+    document.querySelector("#address-confirmation-button").className = "confirmation-button";
 }
 
 
 /**
  * Just verify if the data is null or an empty string 
- * @param {Object} dataJson the info provided in the format {name: "something", address: "something"}
+ * @param {String} name customer's name
+ * @param {String} address customer's address
  * @return {boolean} true if the provided data is valid, false otherwise
  */
 function customerProvidedDataValidator(name, address) {
@@ -265,6 +266,7 @@ function setCustomerData(name, address) {
 
 /** 
  * Finishes the purchase and redirect customer to whatsapp
+ * @return {void} void
  */
 function purchaseFinisher() {
     console.log("in")
