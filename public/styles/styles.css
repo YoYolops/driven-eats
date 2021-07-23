@@ -125,11 +125,26 @@ scroller::-webkit-scrollbar-track {
     position: relative;
 }
 
+.card > img {
+    display: none;
+}
+
 #dish-scroller-card-selected,
 #beverage-scroller-card-selected,
 #dessert-scroller-card-selected {
     border: 4px solid var(--stGreen);
     padding: 13px 10px 0px 10px;
+}
+
+#dish-scroller-card-selected > img,
+#beverage-scroller-card-selected > img,
+#dessert-scroller-card-selected > img {
+    display: block;
+    width: 16px;
+    height: 16px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
 }
 
 .img-container {
@@ -295,7 +310,7 @@ footer button {
     width: 100%;
 }
 
-.wpp-link-container {
+.confirmation-button {
     width: 333px;
     height: 52px;
     border-radius: 26px;

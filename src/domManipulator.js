@@ -3,13 +3,13 @@
 //#################################################################################################
 
 
-const order = {
+const _ORDER = {
     dish: {},
     beverage: {},
     dessert: {}
 }
 
-const customer = {
+const _CUSTOMER = {
     name: null,
     address: null
 }
@@ -27,7 +27,7 @@ function setOrderInfo(key, data) {
         name: name,
         price: intergerPrice
     }
-    order[key] = formatedData;
+    _ORDER[key] = formatedData;
 }
 
 
@@ -36,8 +36,8 @@ function setOrderInfo(key, data) {
  * @return {boolean} true if all fields are filled, false otherwise
  */
 function isOrderValid() {
-    for(let key in order) {
-        if(!order[key].name || !order[key].price) return false;
+    for(let key in _ORDER) {
+        if(!_ORDER[key].name || !_ORDER[key].price) return false;
     }
     return true;
 }
@@ -160,11 +160,11 @@ function buttonModeSwitcher() {
 function generateLinkToWhatsApp() {
     const baseURL = "https://wa.me/5583996231204";
 
-    const { dish, beverage, dessert } = order;
+    const { dish, beverage, dessert } = _ORDER;
     const totalOrderPrice = dish.price + beverage.price + dessert.price;
     const parsedTotalOrderPrice = parsePriceToString(totalOrderPrice)
 
-    const message = `Olá, gostaria de fazer o pedido:\n - Prato: ${order.dish.name}\n - Bebida: ${order.beverage.name}\n - Sobremesa: ${order.dessert.name}\nTotal: R$ ${parsedTotalOrderPrice}`; 
+    const message = `Olá, gostaria de fazer o pedido:\n - Prato: ${_ORDER.dish.name}\n - Bebida: ${_ORDER.beverage.name}\n - Sobremesa: ${_ORDER.dessert.name}\nTotal: R$ ${parsedTotalOrderPrice} \n\n Nome: ${_CUSTOMER["name"]}\nEndereço: ${_CUSTOMER["address"]}`; 
     const encodedMessage = encodeURIComponent(message);
     const finalURL = baseURL + "?text=" + encodedMessage;
 
@@ -177,7 +177,7 @@ function generateLinkToWhatsApp() {
  * @return {void} void
  */
 function confirmationPopUpActivator() {
-    const { dish, beverage, dessert } = order;
+    const { dish, beverage, dessert } = _ORDER;
     const totalOrderPrice = parsePriceToString(dish.price + beverage.price + dessert.price);
     const orderedData = [
         dish.name, dish.price, beverage.name,
@@ -210,8 +210,10 @@ function resetPopUpState() {
     const orderedItems = document.querySelector("#ordered-items");
     orderedItems.className = null;
 
-    const addressInput = document.querySelector("#address-input-container");
-    addressInput.className = "hidden";
+    document.querySelector("#address-input-container").className = "hidden"; // hides address inputs
+    document.querySelector("#address-confirmation-button").className = "hidden"; // hides address confirmation button
+    document.querySelector("#order-confirmation-button").className = "confirmation-button"; // enable confirmation button
+    document.querySelector(".popup").style.backgroundColor = "#32b72f"; // var(--stGreen) reset popup color
 }
 
 
@@ -230,8 +232,13 @@ function askForAddress() {
     const orderedItems = document.querySelector("#ordered-items");
     const addressInput =document.querySelector("#address-input-container");
 
+    // goes to the next stage
     orderedItems.className = "hidden";
     addressInput.className = null;
+
+    // hides the first button and shows the one that will handle the address data
+    document.querySelector("#order-confirmation-button").className = "hidden";
+    document.querySelector("#address-confirmation-button").className = ".confirmation-button";
 }
 
 
@@ -240,10 +247,40 @@ function askForAddress() {
  * @param {Object} dataJson the info provided in the format {name: "something", address: "something"}
  * @return {boolean} true if the provided data is valid, false otherwise
  */
-function customerProvidedDataValidator(dataJson) {
-    const { name, address } = dataJson;
-
+function customerProvidedDataValidator(name, address) {
     if(!name || !address || name === "" || address === "") return false;
     return true;
 }
 
+
+/**
+ * Set the inserted data from client, with there is already some data, they are updated
+ * @return {void} void
+ */
+function setCustomerData(name, address) {
+    _CUSTOMER["name"] = name;
+    _CUSTOMER["address"] = address;
+}
+
+
+/** 
+ * Finishes the purchase and redirect customer to whatsapp
+ */
+function purchaseFinisher() {
+    console.log("in")
+    const customerName = document.querySelector("#customer-name-input").value;
+    const customerAddress = document.querySelector("#customer-address-input").value;
+    console.log(customerName);
+    console.log(customerAddress);
+
+    if(customerProvidedDataValidator(customerName, customerAddress)) {
+        setCustomerData(customerName, customerAddress);
+    } else {
+        document.querySelector("#popup-title").textContent = "Insira dados válidos";
+        document.querySelector(".popup").style.backgroundColor = "#ad001d";
+        return; // para a função
+    }
+
+    const whatsappRedirectionLink = generateLinkToWhatsApp();
+    window.location.replace(whatsappRedirectionLink); // redirection via JS
+}
