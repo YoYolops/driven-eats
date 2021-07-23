@@ -1,3 +1,9 @@
+//#################################################################################################
+//                                  DATA ORGANIZERS:
+//#################################################################################################
+
+
+
 const order = {
     dish: {},
     beverage: {},
@@ -53,8 +59,8 @@ function parsePriceToInterger(priceString) {
  * @param priceInt the interger that will be transformed
  * @return {String} the formated price
  */
-function parcePriceToString(priceInt) {
-    const stringedInt = toString(priceInt);
+function parsePriceToString(priceInt) {
+    const stringedInt = priceInt.toString();
     let centsSlice = ""; // two last numbers represent the cents
     let intSlice = ""; // the other numbers represents the interger part of the value
 
@@ -70,8 +76,9 @@ function parcePriceToString(priceInt) {
 }
 
 
+
 // ###############################################################################################
-//                                      DOM MANIPULATORS:
+//                                      DOM MANIPULATORS:                  
 // ###############################################################################################
 
 
@@ -86,7 +93,7 @@ function parcePriceToString(priceInt) {
  */
 function toggleSelectedMode(selected, wichScroller) {
     // Verify if there's a selected card already, changing it to unselected
-    const scroller = document.getElementById(wichScroller);
+    const scroller = document.querySelector("#" + wichScroller);
     const cards = scroller.getElementsByClassName("card");
     for(let i = 0; i < cards.length; i++) {
         if(cards[i].id) {
@@ -94,7 +101,7 @@ function toggleSelectedMode(selected, wichScroller) {
         }
     }
     
-    selected.id = "card-selected";
+    selected.id = wichScroller + "-" +"card-selected";
     sendDataToOrderer(wichScroller);
     buttonModeSwitcher()
 }
@@ -108,7 +115,7 @@ function toggleSelectedMode(selected, wichScroller) {
 function sendDataToOrderer(wichScrollerIsDataFrom) {
     const key = wichScrollerIsDataFrom.split("-")[0];
 
-    const selectedCard = document.getElementById("card-selected");
+    const selectedCard = document.getElementById(wichScrollerIsDataFrom + "-" + "card-selected");
     const name = selectedCard.querySelector("h3").textContent;
     const price = selectedCard.getElementsByClassName("dish-price")[1].textContent;
 
@@ -122,17 +129,68 @@ function sendDataToOrderer(wichScrollerIsDataFrom) {
 
 
 /** 
- * it enables the button if customer already chosen his dishes
+ * it enables the button if customer already chosen his three dishes
  * @return {void} void 
  */
 function buttonModeSwitcher() {
     const isOrderAlreadyValid = isOrderValid();
+    const disabledButton = document.getElementById("disabled");
 
-    if(isOrderAlreadyValid) {
-        const disabledButton = document.getElementById("disabled");
+    if(isOrderAlreadyValid && disabledButton) { // prevents from trying set to enabled when already is
         disabledButton.disabled = false;
         disabledButton.id = "enabled";
         disabledButton.textContent = "Fechar Pedido";
     }
+}
 
+
+
+// ###############################################################################################
+//                                      ORDER FINISHERS                  
+// ###############################################################################################
+
+/** 
+ * Generates a proper link based in customer's selections
+ * @return {String} custom link for rediecting to WhatApp
+ */
+function generateLinkToWhatsApp() {
+    const baseURL = "https://wa.me/5583996231204";
+
+    const { dish, beverage, dessert } = order;
+    const totalOrderPrice = dish.price + beverage.price + dessert.price;
+    const parsedTotalOrderPrice = parsePriceToString(totalOrderPrice)
+
+    const message = `Olá, gostaria de fazer o pedido:\n - Prato: ${order.dish.name}\n - Bebida: ${order.beverage.name}\n - Sobremesa: ${order.dessert.name}\nTotal: R$ ${parsedTotalOrderPrice}`; 
+    const encodedMessage = encodeURIComponent(message);
+    const finalURL = baseURL + "?text=" + encodedMessage;
+
+    return finalURL;
+}
+
+
+/** 
+ * Show pop up in screen and inserts the relevant data in it
+ * @return {void} void
+ */
+function confirmationPopUpActivator() {
+    const { dish, beverage, dessert } = order;
+    const totalOrderPrice = parsePriceToString(dish.price + beverage.price + dessert.price);
+    const orderedData = [
+        dish.name, dish.price, beverage.name,
+        beverage.price, dessert.name, dessert.price,
+        "TOTAL", "R$ " + totalOrderPrice,
+    ];
+
+    const popupContainer = document.querySelector(".popup-container");
+    const spans = document.querySelectorAll(".span");
+
+    for(let i = 0; i < spans.length; i++) {
+        if(typeof(orderedData[i]) === "number") {
+            spans[i].textContent = parsePriceToString(orderedData[i]);
+        } else {
+            spans[i].textContent = orderedData[i];
+        }
+    }
+
+    popupContainer.id = null;
 }
