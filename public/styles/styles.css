@@ -11,6 +11,12 @@
     --lightGreen: #50D074;
 }
 
+/* Bruna, juro que tentei não usar mais o !important, aliás, tu vai perceber que não
+   usei nenhum outro ao longo da página, mas esse foi preciso. É só pra esconer uma galera aí,
+   acho que não faz mal (ou faz? vc me diz).
+   Ps. vou tirar esse comentário assim que sair o feedback, não acrescenta em nada :) 
+*/
+
 .hidden {
     display: none !important;
 }
@@ -54,7 +60,7 @@ header {
     flex: 1;
     color: #fff;
     font-size: 40px;
-    z-index: 30;
+    z-index: 50;
 }
 
 header h3 {
@@ -79,12 +85,18 @@ header h3 {
     padding: 0px 12px 0px 20px;
 }
 
+#dish-scroller {
+    overflow-x: overlay;
+}
+
 .scroller::-webkit-scrollbar {
     height: 0px;
+    z-index: 0;
 }
 
 scroller::-webkit-scrollbar-track {
     height: 0px;
+    z-index: 0px;
 }
 
 .app-content-container > section {
@@ -97,7 +109,7 @@ scroller::-webkit-scrollbar-track {
 }
 
 .app-content-container section:first-child {
-    margin-top: 0px !important;
+    margin-top: 0px;
 }
 
 .card {
@@ -197,7 +209,7 @@ footer button {
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100%!important;
+    height: 100%;
     background-color: rgba(255,255,255,0.8);
     display: flex;
     flex-direction: column;
