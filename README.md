@@ -1,3 +1,5 @@
+![Badge](https://img.shields.io/static/v1?label=JavaScript&message=JS&color=EFD81D&style=for-the-badge&logo=javascript)
+
 # Driven Eats
 
 Demonstração de um layout e funcionalidades simples de um web-app para pedido de comida online
