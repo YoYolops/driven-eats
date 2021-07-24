@@ -219,7 +219,6 @@ function resetPopUpState() {
 }
 
 
-// Nem precisa documentar, mais auto explicativo que isso é impossível kkkkkkk
 function hidePopUp() {
     const popupContainer = document.querySelector("#popup-container");
     popupContainer.className = "hidden";
@@ -238,14 +237,13 @@ function askForAddress() {
     orderedItems.className = "hidden";
     addressInput.className = null;
 
-    // hides the first button and shows the one that will handle the address data
     document.querySelector("#order-confirmation-button").className = "hidden";
     document.querySelector("#address-confirmation-button").className = "confirmation-button";
 }
 
 
 /**
- * Just verify if the data is null or an empty string 
+ * Verify if the data is null or an empty string 
  * @param {String} name customer's name
  * @param {String} address customer's address
  * @return {boolean} true if the provided data is valid, false otherwise
@@ -256,10 +254,6 @@ function customerProvidedDataValidator(name, address) {
 }
 
 
-/**
- * Set the inserted data from client, with there is already some data, they are updated
- * @return {void} void
- */
 function setCustomerData(name, address) {
     _CUSTOMER["name"] = name;
     _CUSTOMER["address"] = address;
