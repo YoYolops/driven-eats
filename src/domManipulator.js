@@ -271,11 +271,8 @@ function setCustomerData(name, address) {
  * @return {void} void
  */
 function purchaseFinisher() {
-    console.log("in")
     const customerName = document.querySelector("#customer-name-input").value;
     const customerAddress = document.querySelector("#customer-address-input").value;
-    console.log(customerName);
-    console.log(customerAddress);
 
     if(customerProvidedDataValidator(customerName, customerAddress)) {
         setCustomerData(customerName, customerAddress);
