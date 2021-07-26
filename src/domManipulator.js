@@ -164,7 +164,14 @@ function generateLinkToWhatsApp() {
     const totalOrderPrice = dish.price + beverage.price + dessert.price;
     const parsedTotalOrderPrice = parsePriceToString(totalOrderPrice)
 
-    const message = `Olá, gostaria de fazer o pedido:\n - Prato: ${_ORDER.dish.name}\n - Bebida: ${_ORDER.beverage.name}\n - Sobremesa: ${_ORDER.dessert.name}\nTotal: R$ ${parsedTotalOrderPrice} \n\n Nome: ${_CUSTOMER["name"]}\nEndereço: ${_CUSTOMER["address"]}`; 
+    const message = `Olá, gostaria de fazer o pedido:\n 
+        - Prato: ${_ORDER.dish.name}\n 
+        - Bebida: ${_ORDER.beverage.name}\n 
+        - Sobremesa: ${_ORDER.dessert.name}\n
+        Total: R$ ${parsedTotalOrderPrice} 
+        \n\n Nome: ${_CUSTOMER["name"]}
+        \nEndereço: ${_CUSTOMER["address"]}`; 
+        
     const encodedMessage = encodeURIComponent(message);
     const finalURL = baseURL + "?text=" + encodedMessage;
 
