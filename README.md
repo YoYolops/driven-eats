@@ -2,7 +2,7 @@
 
 # Driven Eats
 
-Demonstração de um layout e funcionalidades simples de um web-app para pedido de comida online
+Demonstração de um layout e funcionalidades simples de um web-app para pedido de comida online, você pode [acessar aqui](https://yoyolops.github.io/driven-eats/)
 
 ## Fluxo de dados:
 1. Usuário seleciona um combo (Prato principal, bebida e sobremesa);
